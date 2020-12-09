@@ -1,7 +1,6 @@
 import numpy as np
 import pdb
 import time
-from numba import njit
 from db_utils import executar_deposicao_balistica
 from dars_utils import executar_relaxamento_superficial
 
@@ -27,10 +26,9 @@ class Deposicao(object):
         self.snapshots = snapshots if snapshots != None else tempo_maximo
         self.periodo_das_amostras = self.tempo_maximo // self.snapshots
         self.altura_interface = np.zeros(L, dtype = np.int32)
-        self.altura_sitios = np.zeros((snapshots, L), dtype = np.int32)
+        self.altura_sitios = np.zeros((self.snapshots, L), dtype = np.int32)
         self.interface = [np.zeros(self.L, dtype = np.bool8)]
         self.instantaneos = {}
-        self.executar_relaxamento_superficial = executar_relaxamento_superficial
     
     def altura_sitio(self, i, t = None):
         if t != None:
@@ -148,17 +146,18 @@ class DeposicaoAleatoriaRelaxacaoSuperficial(Deposicao):
     
     def __init__(self, instancia, L, rng, tempo_maximo = 1000, snapshots = None):
         super().__init__(instancia, L, rng, tempo_maximo = tempo_maximo, snapshots = snapshots)
+        self.executar_relaxamento_superficial = executar_relaxamento_superficial
 
     def _depositar_particula(self, t):
         t_ = t // self.periodo_das_amostras
         sitio = self._sortear_sitio()
         esquerda = max(sitio - 1, sitio * (sitio == 0))
         direita = max(sitio, (sitio + 1) * (sitio != (self.L - 1)))
-        if self.alturas_sitio[t_][direita] < self.alturas_sitio[t_][sitio]:
+        if self.altura_sitios[t_][direita] < self.altura_sitios[t_][sitio]:
             sitio = direita
-        if self.alturas_sitio[t_][esquerda] < self.alturas_sitio[t_][esquerda]:
+        if self.altura_sitios[t_][esquerda] < self.altura_sitios[t_][esquerda]:
             sitio = esquerda
-        altura_particula = self.alturas_sitio[t][sitio] = self.alturas_sitio[t][sitio] + 1
+        altura_particula = self.altura_sitios[t][sitio] = self.altura_sitios[t][sitio] + 1
         if altura_particula >= len(self.interface): # incrementar a interface com zeros
             self.interface.append(np.zeros(self.L, dtype = np.bool8))
         self.interface[altura_particula - 1][sitio] = 1
@@ -176,13 +175,14 @@ class DeposicaoAleatoriaRelaxacaoSuperficial(Deposicao):
 class DeposicaoBalistica(Deposicao):
 
     def __init__(self, instancia, L, rng, tempo_maximo = 1000, snapshots = None):
-        super().__init__(instancia, L, rng, tempo_maximo = tempo_maximo, snapshots = None)   
+        super().__init__(instancia, L, rng, tempo_maximo = tempo_maximo, snapshots = snapshots)   
+        self.executar_deposicao_balistica = executar_deposicao_balistica
     
     def _depositar_particula(self, t):
         t_ = t // self.periodo_das_amostras
         sitio = self._sortear_sitio()
-        esquerda = max(esquerda - 1, esquerda * (esquerda == 0))
-        direita = max(direita, (direita + 1) * (direita != (self.L - 1)))
+        esquerda = max(sitio - 1, sitio * (sitio == 0))
+        direita = max(sitio, (sitio + 1) * (sitio != (self.L - 1)))
         altura_particula = self.altura_sitios[t_][sitio] + 1
         if self.altura_sitios[t_][esquerda] > altura_particula:
             altura_particula = self.altura_sitios[t_][esquerda]
