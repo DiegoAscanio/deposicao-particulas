@@ -9,19 +9,23 @@ def plotar_interface(titulo, interface):
     pyplot.title(titulo)
     pyplot.show()
     
-def plotar_instantaneos(titulo, interface, instantaneos, t_comutacao = 25):
-    comutar_cor = lambda cor: 'w' if cor == 'k' else 'k'
+comutar_representacao = lambda r: 'w.' if r == 'k.' else 'k.'
+    
+def plotar_instantaneos(titulo, interface, instantaneos, t_comutacao = 25, comutar_representacao = comutar_representacao):
     pyplot.title(titulo)
-    cor = 'k'
+    representacao = comutar_representacao(None)
     for instantaneo, t in zip(instantaneos, range(len(instantaneos))):
-        pyplot.plot(instantaneo, cor + '.')
+        pyplot.plot(instantaneo, representacao)
         if t % t_comutacao == 0: # hora de comutar a cor
-            cor = comutar_cor(cor)
-    pyplot.plot(interface, cor + '.')
+            representacao = comutar_representacao(representacao)
+    pyplot.plot(interface, representacao)
     pyplot.show()
     
-def plotar_rugosidades(titulo, rugosidades):
+def plotar_rugosidades(titulo, rugosidades, logscale = False):
     pyplot.title(titulo)
+    if logscale:
+        pyplot.xscale('log')
+        pyplot.yscale('log')
     for rugosidade in rugosidades:
         pyplot.plot(rugosidade)
     pyplot.show()
