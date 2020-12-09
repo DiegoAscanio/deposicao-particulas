@@ -4,7 +4,7 @@ async-generator==1.10
 attrs==20.3.0
 backcall==0.2.0
 bleach==3.2.1
-certifi==2020.11.8
+certifi==2020.12.5
 cffi==1.14.4
 chardet==3.0.4
 cycler==0.10.0
@@ -15,7 +15,7 @@ distlib==0.3.1
 entrypoints==0.3
 filelock==3.0.12
 idna==2.10
-importlib-metadata==3.1.0
+importlib-metadata==3.1.1
 ipykernel==5.3.4
 ipython==7.19.0
 ipython-genutils==0.2.0
@@ -38,11 +38,11 @@ nbformat==5.0.8
 nest-asyncio==1.4.3
 notebook==6.1.5
 numpy==1.19.4
-packaging==20.5
-pandas==1.1.4
+packaging==20.7
+pandas==1.1.5
 pandoc==1.0.2
 pandocfilters==1.4.3
-parso==0.7.0
+parso==0.7.1
 pexpect==4.8.0
 pickleshare==0.7.5
 Pillow==8.0.1
@@ -54,7 +54,7 @@ prompt-toolkit==3.0.8
 ptyprocess==0.6.0
 pycparser==2.20
 pyee==7.0.4
-Pygments==2.7.2
+Pygments==2.7.3
 pyparsing==2.4.7
 pyppeteer==0.2.2
 pyrsistent==0.17.3
@@ -70,10 +70,10 @@ six==1.15.0
 terminado==0.9.1
 testpath==0.4.4
 tornado==6.1
-tqdm==4.54.0
+tqdm==4.54.1
 traitlets==5.0.5
 urllib3==1.26.2
-virtualenv==20.2.1
+virtualenv==20.2.2
 virtualenv-clone==0.5.4
 wcwidth==0.2.5
 webencodings==0.5.1
