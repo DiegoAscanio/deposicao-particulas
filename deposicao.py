@@ -1,7 +1,6 @@
 import numpy as np
 import pdb
 import time
-from numba import njit
 from db_utils import executar_deposicao_balistica
 from dars_utils import executar_relaxamento_superficial
 
