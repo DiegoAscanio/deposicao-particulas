@@ -3,6 +3,7 @@ import pdb
 import time
 from db_utils import executar_deposicao_balistica
 from dars_utils import executar_relaxamento_superficial
+from da_utils import quick_add_at
 
 class Deposicao(object):
     
@@ -123,6 +124,7 @@ class DeposicaoAleatoria(Deposicao):
     
     def __init__(self, instancia, L, rng, tempo_maximo = 1000, snapshots = None):
         super().__init__(instancia, L, rng, tempo_maximo = tempo_maximo, snapshots = snapshots)
+        self.quick_add_at = quick_add_at
     
     def _depositar_particula(self, t):
         t_ = t // self.periodo_das_amostras
@@ -139,7 +141,7 @@ class DeposicaoAleatoria(Deposicao):
     def _depositar_particulas(self, t):
         t_ = t // self.periodo_das_amostras
         self.altura_sitios[t_] = self.altura_interface
-        indices_sitios = self._sortear_sitios()
+        indices_sitios = np.int32(self._sortear_sitios())
         np.add.at(self.altura_interface, indices_sitios, 1)
     
 class DeposicaoAleatoriaRelaxacaoSuperficial(Deposicao):
