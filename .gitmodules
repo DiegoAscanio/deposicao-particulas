@@ -1,0 +1,3 @@
+[submodule "latex-paper"]
+	path = latex-paper
+	url = https://github.com/DiegoAscanio/latex-cefetmg.git
