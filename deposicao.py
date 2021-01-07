@@ -98,7 +98,7 @@ class Deposicao(object):
         if t != None:
             return self.__desvio_quadratico_medio_distribuicao_alturas(t)
         else:
-            return np.array([self.rugosidade(t) for t in range(self.snapshots)])
+            return np.sqrt(np.array([self.rugosidade(t) for t in range(self.snapshots)]))
     
     def __momento(self, ordem, t):
         momento = lambda x, mu, n: (x - mu) ** n
@@ -118,7 +118,7 @@ class Deposicao(object):
         if t != None:
             return self.__momento(4, t) / np.power(self.momento(2, t), 2)
         else:
-            return [self.curtose(t) for t in range(self.snapshots)]
+            return np.array([self.curtose(t) for t in range(self.snapshots)])
         
 class DeposicaoAleatoria(Deposicao):
     

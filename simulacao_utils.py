@@ -22,15 +22,20 @@ def plotar_instantaneos(titulo, interface, instantaneos, t_comutacao = 25, comut
     pyplot.plot(interface, representacao)
     pyplot.show()
     
-def plotar_rugosidades(titulo, rugosidades, comprimentos_subestratos, logscale = False):
+def plotar_rugosidades(titulo, rugosidades, comprimentos_subestratos, logscale = False, colapso = False):
     pyplot.title(titulo)
     if logscale:
         pyplot.xscale('log')
         pyplot.yscale('log')
     for rugosidade, L in zip(rugosidades, comprimentos_subestratos):
         if rugosidade.shape[0] == 2:
-            pyplot.plot(rugosidade[1], rugosidade[0], '-', label = 'L: {}'.format(L))
+            x, y = rugosidade[1], rugosidade[0]
         else:
-            pyplot.plot(rugosidade)
+            y = rugosidade
+            x = np.arange(rugosidade.shape[0])
+        if colapso:
+            x = x / np.power(L, 2)
+            y = y / np.power(L, 1/2)
+        pyplot.plot(x, y, '-', label = 'L: {}'.format(L))
     pyplot.legend()
     pyplot.show()
