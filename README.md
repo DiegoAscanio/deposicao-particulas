@@ -33,7 +33,7 @@ $ jupyter lab
 
 Para executar a Simulação de Deposições de Exemplo de Mattos(2005), presentes no capítulo 2, abrir o arquivo **simulacao_experimentos_crescimento_interfaces_thiago_mattos.ipynb** e executar as células deste notebook.  
 
-Para simular outras deposições, abrir o arquivo **executar_simulacoes.ipynb**, descomentar o tipo de deposição desejada, configurar o número de núcleos de processamento disponíveis, a quantidade de amostras (sempre multipla do numero de nucleos de processamento disponiveis), o tempo minimo de simulação, os comprimentos de substratos a erem simulados, a quantidade de janelas para armazenar os snapshots e execute as células do notebok.  
+Para simular outras deposições, abrir o arquivo **executar_simulacoes.ipynb**, descomentar o tipo de deposição desejada, configurar o número de núcleos de processamento disponíveis, a quantidade de amostras (sempre multipla do numero de nucleos de processamento disponiveis), o tempo minimo de simulação, os comprimentos de substratos a serem simulados, a quantidade de janelas para armazenar os snapshots e execute as células do notebok.  
 
 Para plotar as simulações, abrir o arquivo **plotar_simulacoes_e_estimar_parametros.ipynb**, descomentar o tipo de deposição desejada, configurar os comprimentos dos substratos a serem plotados e executar as células do notebook.  
 
