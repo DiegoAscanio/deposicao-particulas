@@ -4,11 +4,11 @@ Repositório Para Trabalho Final da Disciplina de Princípios de Modelagem Matem
 
 Simulação de fenômenos de deposição de partículas
 
-## Deposição Aleatória
-## Deposição Aleatória com Relaxamento Superficial
-## Deposição Balística
+### Deposição Aleatória
+### Deposição Aleatória com Relaxamento Superficial
+### Deposição Balística
 
-# Instruções de Instalação
+## Instruções de Instalação
 1. Criar Ambiente Virtual Python Separadamente
 ```
 $ virtualenv3 venv3 # criar ambiente
@@ -28,6 +28,8 @@ $ make
 ```
 $ jupyter lab
 ```
+
+## Instruções de Execução
 
 Para executar a Simulação de Deposições de Exemplo de Mattos(2005), presentes no capítulo 2, abrir o arquivo **simulacao_experimentos_crescimento_interfaces_thiago_mattos.ipynb** e executar as células deste notebook.  
 
