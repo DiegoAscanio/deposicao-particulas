@@ -4,12 +4,12 @@ import matplotlib._color_data as mcd
 import pdb
 import numpy as np
 
-def plotar_interface(titulo, interface):
-    pyplot.matshow(interface, cmap = ListedColormap(['w', 'k']))
+def plotar_interface(titulo, interface, cmap = ListedColormap(['white', 'black'])):
+    pyplot.matshow(interface, cmap = cmap)
     pyplot.title(titulo)
     pyplot.show()
     
-comutar_representacao = lambda r: 'w.' if r == 'k.' else 'k.'
+comutar_representacao = lambda r: 'w-' if r == 'k-' else 'k-'
     
 def plotar_instantaneos(titulo, interface, instantaneos, t_comutacao = 25, comutar_representacao = comutar_representacao):
     pyplot.title(titulo)
@@ -18,8 +18,6 @@ def plotar_instantaneos(titulo, interface, instantaneos, t_comutacao = 25, comut
         pyplot.plot(instantaneo, representacao)
         if t % t_comutacao == 0: # hora de comutar a cor
             representacao = comutar_representacao(representacao)
-    representacao = comutar_representacao(representacao)
-    pyplot.plot(interface, representacao)
     pyplot.show()
     
 def plotar_rugosidades(titulo, rugosidades, comprimentos_subestratos, logscale = False, colapso = False):
