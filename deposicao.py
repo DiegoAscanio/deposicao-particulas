@@ -157,7 +157,7 @@ class DeposicaoAleatoriaRelaxacaoSuperficial(Deposicao):
         direita = max(sitio, (sitio + 1) * (sitio != (self.L - 1)))
         if self.altura_sitios[t_][direita] < self.altura_sitios[t_][sitio]:
             sitio = direita
-        if self.altura_sitios[t_][esquerda] < self.altura_sitios[t_][esquerda]:
+        if self.altura_sitios[t_][esquerda] < self.altura_sitios[t_][sitio]:
             sitio = esquerda
         altura_particula = self.altura_sitios[t][sitio] = self.altura_sitios[t][sitio] + 1
         if altura_particula >= len(self.interface): # incrementar a interface com zeros
