@@ -12,9 +12,9 @@ cdef _executar_relaxamento_superficial(np.ndarray[int, ndim=1] altura_sitios, np
             esquerda = sitio - 1
         if sitio < L - 1:
             direita = sitio + 1
-        if altura_sitios[direita] < altura_sitios[sitio]:
+        if resultante[direita] < resultante[sitio]:
             sitio = direita
-        if altura_sitios[esquerda] < altura_sitios[sitio]:
+        if resultante[esquerda] < resultante[sitio]:
             sitio = esquerda
         resultante[sitio] = resultante[sitio] + 1 
     return resultante
